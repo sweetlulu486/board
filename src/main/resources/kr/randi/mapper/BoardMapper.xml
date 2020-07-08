@@ -3,9 +3,23 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.randi.mapper.BoardMapper">
-  <select id="getList" resultType="kr.randi.domain.BoardVO">
-    <![CDATA[
+
+	<resultMap id="BoardList" type="kr.randi.domain.BoardVO" >
+    	<result property="bno" column="bno" />
+    	<result property="title" column="title" />
+    	<!-- mysql에서 TEXT 컬럼을 읽어오기 위해서 VARCHAR로 변환 -->
+    	<result property="content" column="content" jdbcType="VARCHAR" javaType="java.lang.String" />
+    	<result property="writer" column="writer" />
+    	<result property="regdate" column="regdate" />
+    	<result property="updatedate" column="updatedate" />
+    	<result property="viewcnt" column="viewcnt" />
+	</resultMap>
+
+	<!-- bno > 0를 이용하여 인덱스를 타게 하도록 한다. -->
+	<select id="getList" resultMap="BoardList">
+		<![CDATA[
     	SELECT * FROM board.tbl_board WHERE bno > 0
-    ]]>
-  </select>
+    	]]>
+	</select>
+	
 </mapper>
