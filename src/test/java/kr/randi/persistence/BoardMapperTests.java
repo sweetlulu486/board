@@ -24,10 +24,7 @@ public class BoardMapperTests {
 	
 	@Test
 	public void testGetList() {
-		List<BoardVO> list = mapper.getList();
-		for(BoardVO b : list) {
-			System.out.println(b);
-		}
+		mapper.getList().forEach(board -> log.info(board));
 	}
 	
 }

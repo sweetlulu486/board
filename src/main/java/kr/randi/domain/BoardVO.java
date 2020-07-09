@@ -12,8 +12,4 @@ public class BoardVO {
 	private Date updatedate;
 	private Long viewcnt;
 	
-	@Override
-	public String toString() {
-		return title;
-	}
 }
