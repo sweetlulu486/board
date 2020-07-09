@@ -26,4 +26,19 @@
 		INSERT INTO board.tbl_board(title, content, writer) VALUES (#{title}, #{content}, #{writer});
 	</insert>
 	
+	<resultMap id="BoardArticle" type="kr.randi.domain.BoardVO" >
+    	<result property="bno" column="bno" />
+    	<result property="title" column="title" />
+    	<!-- mysql에서 TEXT 컬럼을 읽어오기 위해서 VARCHAR로 변환 -->
+    	<result property="content" column="content" jdbcType="VARCHAR" javaType="java.lang.String" />
+    	<result property="writer" column="writer" />
+    	<result property="regdate" column="regdate" />
+    	<result property="updatedate" column="updatedate" />
+    	<result property="viewcnt" column="viewcnt" />
+	</resultMap>
+	
+	<select id="readBoard" resultMap="BoardArticle">
+		SELECT * FROM tbl_board where bno = #{bno}
+	</select>
+	
 </mapper>

@@ -36,4 +36,11 @@ public class BoardMapperTests {
 		log.info(board);
 	}
 	
+	@Test
+	public void testReadBoard() {
+		BoardVO board = mapper.readBoard(5L);
+		
+		log.info(board);
+	}
+	
 }
