@@ -7,4 +7,5 @@ import kr.randi.domain.BoardVO;
 public interface BoardMapper {
 
 	public List<BoardVO> getList();
+	public void insertBoard(BoardVO board);
 }

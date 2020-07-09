@@ -1,7 +1,5 @@
 package kr.randi.persistence;
 
-import java.util.List;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +23,17 @@ public class BoardMapperTests {
 	@Test
 	public void testGetList() {
 		mapper.getList().forEach(board -> log.info(board));
+	}
+
+	@Test
+	public void testInsertBoard() {
+		BoardVO board = new BoardVO();
+		board.setTitle("hello world");
+		board.setContent("new content");
+		board.setWriter("newbie");
+		mapper.insertBoard(board);
+
+		log.info(board);
 	}
 	
 }

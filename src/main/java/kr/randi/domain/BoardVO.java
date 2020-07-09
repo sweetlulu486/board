@@ -2,6 +2,9 @@ package kr.randi.domain;
 
 import java.util.Date;
 
+import lombok.Data;
+
+@Data
 public class BoardVO {
 
 	private Long bno;
