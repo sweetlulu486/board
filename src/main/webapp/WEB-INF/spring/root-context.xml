@@ -11,7 +11,7 @@
 	xmlns="http://www.springframework.org/schema/beans">
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
-	<context:property-placeholder location="file:src/main/resources/db/database.properties"/>
+	<context:property-placeholder location="classpath:/db/database.properties"/>
 
 	<bean class="com.zaxxer.hikari.HikariConfig" id="hikariConfig">
 		<property name="driverClassName"
