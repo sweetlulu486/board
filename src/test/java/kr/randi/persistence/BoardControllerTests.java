@@ -50,4 +50,41 @@ public class BoardControllerTests {
 		
 	}
 	
+	@Test
+	public void testWriteBoard() throws Exception {
+		
+		String resultPage = mockMvc.perform(
+				MockMvcRequestBuilders.post("/board/write")
+				.param("title", "BoardController 새글")
+				.param("content", "BoardController 새내용")
+				.param("writer", "tester")
+				).andReturn()
+				.getModelAndView()
+				.getViewName();
+		
+		log.info(resultPage);
+		
+	}
+	
+	@Test
+	public void testReadBoard() throws Exception {
+		log.info(mockMvc.perform(
+					MockMvcRequestBuilders.get("/board/read")
+					.param("bno", "2"))
+					.andReturn()
+					.getModelAndView()
+					.getModelMap()
+				);
+	}
+	
+	public void testRemoveBoard() throws Exception {
+		String resultPage = mockMvc.perform(
+				MockMvcRequestBuilders.post("/board/remove")
+				.param("bno", "3")
+				).andReturn()
+				.getModelAndView()
+				.getViewName();
+		
+		log.info(resultPage);
+	}
 }
