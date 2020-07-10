@@ -44,4 +44,14 @@
 	<update id="deleteBoard">
 		UPDATE board.tbl_board SET deleted=1 WHERE bno = #{bno}
 	</update>
+	
+	<update id="updateBoard">
+		UPDATE board.tbl_board
+		SET title = #{title},
+			content = #{content},
+			writer = #{writer}
+		WHERE
+			bno = #{bno}
+	</update>
+	
 </mapper>

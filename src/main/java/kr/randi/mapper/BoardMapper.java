@@ -10,4 +10,6 @@ public interface BoardMapper {
 	public void insertBoard(BoardVO board);
 	public BoardVO readBoard(Long bno);
 	public int deleteBoard(Long bno);
+	public int updateBoard(BoardVO board);
+	
 }

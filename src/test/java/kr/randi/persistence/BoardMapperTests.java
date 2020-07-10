@@ -48,4 +48,16 @@ public class BoardMapperTests {
 		log.info("DELETE COUNT: " + mapper.deleteBoard(4L));
 	}
 	
+	@Test
+	public void testUpdateBoard() {
+		
+		BoardVO board = new BoardVO();
+		board.setBno(5L);
+		board.setTitle("수정하였음");
+		board.setContent("수정한 내용");
+		board.setWriter("user99");
+		
+		int count = mapper.updateBoard(board);
+		log.info("UPDATE COUNT: " + count);
+	}
 }
