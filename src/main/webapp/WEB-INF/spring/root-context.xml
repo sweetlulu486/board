@@ -32,5 +32,7 @@
 	</bean>
 	
 	<mybatis-spring:scan base-package="kr.randi.mapper"/>
-		
+	
+	<context:component-scan base-package="kr.randi.service"></context:component-scan>
+	
 </beans>
