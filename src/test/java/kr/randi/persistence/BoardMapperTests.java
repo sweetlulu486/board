@@ -43,4 +43,9 @@ public class BoardMapperTests {
 		log.info(board);
 	}
 	
+	@Test
+	public void testDeleteBoard() {
+		log.info("DELETE COUNT: " + mapper.deleteBoard(4L));
+	}
+	
 }

@@ -18,7 +18,7 @@
 	<!-- bno > 0를 이용하여 인덱스를 타게 하도록 한다. -->
 	<select id="getList" resultMap="BoardList">
 		<![CDATA[
-    	SELECT * FROM board.tbl_board WHERE bno > 0
+    	SELECT * FROM board.tbl_board WHERE bno > 0 and deleted <> 1
     	]]>
 	</select>
 	
@@ -38,7 +38,10 @@
 	</resultMap>
 	
 	<select id="readBoard" resultMap="BoardArticle">
-		SELECT * FROM tbl_board where bno = #{bno}
+		SELECT * FROM board.tbl_board where bno = #{bno}
 	</select>
 	
+	<update id="deleteBoard">
+		UPDATE board.tbl_board SET deleted=1 WHERE bno = #{bno}
+	</update>
 </mapper>
