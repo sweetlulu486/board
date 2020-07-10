@@ -28,7 +28,7 @@ public class BoardServiceTests {
 		log.info(service);
 		assertNotNull(service);
 	}
-	
+
 	@Test
 	public void testBoardWrite() {
 		
@@ -39,6 +39,29 @@ public class BoardServiceTests {
 		service.writeBoard(board);
 		
 		log.info("생성된 게시물의 번호: " + board.getBno());
+	}
+	
+	@Test
+	public void testBoardList() {
+		service.getBoardList().forEach(board -> log.info(board));
+	}
+	
+	@Test
+	public void testReadBoard() {
+		log.info(service.getBoard(7L));
+	}
+	
+	@Test
+	public void testRemoveBoard() {
+		log.info(service.removeBoard(3L));
+	}
+
+	@Test
+	public void testUpdateBoard() {
+		BoardVO board = service.getBoard(2L);
+		
+		board.setTitle("수정합니다우아우");
+		log.info(service.modifyBoard(board));
 	}
 	
 }
