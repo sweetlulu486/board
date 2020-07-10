@@ -20,7 +20,7 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void writeBoard(BoardVO board) {
 		// TODO Auto-generated method stub
-		
+		mapper.insertBoard(board);
 	}
 
 	@Override
