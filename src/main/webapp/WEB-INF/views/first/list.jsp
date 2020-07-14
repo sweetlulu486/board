@@ -33,6 +33,15 @@
 							<th>작성일</th>
 							<th>수정일</th>
 						</tr>
+						<c:forEach items="${list}" var="board">
+							<tr>
+								<td><c:out value="${board.bno}" /></td>
+								<td><c:out value="${board.title}" /></td>
+								<td><c:out value="${board.writer}" /></td>
+								<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.regdate}" /></td>
+								<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.updatedate}" /></td>
+							</tr>
+						</c:forEach>
 					</thead>
 				</table>
 			</div>
