@@ -16,7 +16,7 @@ import lombok.extern.log4j.Log4j;
 
 @Controller
 @Log4j
-@RequestMapping("/board/*")
+@RequestMapping("/first/*")
 public class BoardController {
 
 	@Setter(onMethod_ = @Autowired)
@@ -32,7 +32,7 @@ public class BoardController {
 	public String write(BoardVO board, RedirectAttributes attrs) {
 		service.writeBoard(board);
 		attrs.addFlashAttribute("result", board.getBno());
-		return "redirect:/board/list";
+		return "redirect:/first/list";
 	}
 
 	@GetMapping("/read")
@@ -46,7 +46,7 @@ public class BoardController {
 		if (service.modifyBoard(board)) {
 			attrs.addFlashAttribute("result", "success");
 		}
-		return "redirect:/board/list";
+		return "redirect:/first/list";
 	}
 	
 	@PostMapping("/remove")
@@ -54,6 +54,6 @@ public class BoardController {
 		if(service.removeBoard(bno)) {
 			attrs.addFlashAttribute("result", "success");
 		}
-		return"redirect:/board/list";
+		return"redirect:/first/list";
 	}
 }
