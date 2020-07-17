@@ -24,7 +24,6 @@ public class BoardController {
 
 	@GetMapping("/list")
 	public void list(Model model) {
-		log.info("list");
 		model.addAttribute("list", service.getBoardList());
 	}
 
@@ -33,6 +32,10 @@ public class BoardController {
 		service.writeBoard(board);
 		attrs.addFlashAttribute("result", board.getBno());
 		return "redirect:/first/list";
+	}
+	@GetMapping("/write")
+	public void write() {
+		
 	}
 
 	@GetMapping("/read")

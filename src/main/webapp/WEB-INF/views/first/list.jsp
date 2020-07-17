@@ -50,7 +50,17 @@
 	</div>
 	<!-- end panel -->
 </div>
-</div>
 <!-- /.row -->
+
+<script type="text/javascript">
+	$(document)
+			.ready(
+					function(){
+						$("#regBtn").on("click", function() {
+							self.location = "/board/first/write";
+
+						});
+					});
+</script>
 
 <%@include file="../includes/footer.jsp"%>
