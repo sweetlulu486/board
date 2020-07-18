@@ -1,8 +1,11 @@
 package kr.randi.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +31,14 @@ public class BoardController {
 	}
 
 	@PostMapping("/write")
-	public String write(BoardVO board, RedirectAttributes attrs) {
+	public String write(@Valid BoardVO board, BindingResult bindResult, RedirectAttributes attrs) {
+
+		System.out.println(board.getTitle().length());
+		
+		if (bindResult.hasErrors()) {
+			return "redirect:/first/list";
+		}
+		
 		service.writeBoard(board);
 		attrs.addFlashAttribute("result", board.getBno());
 		return "redirect:/first/list";
