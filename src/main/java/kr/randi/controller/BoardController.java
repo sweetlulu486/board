@@ -46,8 +46,8 @@ public class BoardController {
 		
 	}
 
-	@GetMapping("/read")
-	public void get(@RequestParam("bno") Long bno, Model model) {
+	@GetMapping({"/read", "/modify"})
+	public void read(@RequestParam("bno") Long bno, Model model) {
 		model.addAttribute("board", service.getBoard(bno));
 	}
 
