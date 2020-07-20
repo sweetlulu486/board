@@ -21,6 +21,7 @@ public class BoardServiceImpl implements BoardService {
 	public void writeBoard(BoardVO board) {
 		// TODO Auto-generated method stub
 		mapper.insertBoard(board);
+		board.setBno(mapper.getLastBno());
 	}
 
 	@Override

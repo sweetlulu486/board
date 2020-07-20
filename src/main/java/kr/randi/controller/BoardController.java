@@ -32,8 +32,6 @@ public class BoardController {
 
 	@PostMapping("/write")
 	public String write(@Valid BoardVO board, BindingResult bindResult, RedirectAttributes attrs) {
-
-		System.out.println(board.getTitle().length());
 		
 		if (bindResult.hasErrors()) {
 			return "redirect:/first/list";

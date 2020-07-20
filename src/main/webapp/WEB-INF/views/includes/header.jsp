@@ -53,7 +53,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Randi Page</a>
+                <a class="navbar-brand" href="/board/first/list">Randi Page</a>
             </div>
             <!-- /.navbar-header -->
 

@@ -37,6 +37,10 @@
     	<result property="viewcnt" column="viewcnt" />
 	</resultMap>
 	
+	<select id="getLastBno" resultType="long">
+		SELECT LAST_INSERT_ID();
+	</select>
+	
 	<select id="readBoard" resultMap="BoardArticle">
 		SELECT * FROM board.tbl_board where bno = #{bno}
 	</select>

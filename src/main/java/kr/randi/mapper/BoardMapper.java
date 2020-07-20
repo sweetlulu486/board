@@ -11,5 +11,5 @@ public interface BoardMapper {
 	public BoardVO readBoard(Long bno);
 	public int deleteBoard(Long bno);
 	public int updateBoard(BoardVO board);
-	
+	public long getLastBno();
 }
