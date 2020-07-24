@@ -68,8 +68,8 @@ $(document).ready(function() {
 	});
 	
 	$("button[data-oper='list']").click("on", function(e){
-		operForm.find("#bno").remove();
-		operForm.attr("action", "/board/first/list").submit();
+		self.location = "/board/first/list";
+		//operForm.attr("action", "/board/first/list").submit();
 	});
 	
 });
