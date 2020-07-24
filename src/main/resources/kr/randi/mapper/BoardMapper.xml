@@ -52,8 +52,7 @@
 	<update id="updateBoard">
 		UPDATE board.tbl_board
 		SET title = #{title},
-			content = #{content},
-			writer = #{writer}
+			content = #{content}
 		WHERE
 			bno = #{bno}
 	</update>

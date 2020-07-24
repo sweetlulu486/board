@@ -52,8 +52,12 @@ public class BoardController {
 	}
 
 	@PostMapping("/modify")
-	public String modify(BoardVO board, RedirectAttributes attrs) {
+	public String modify(@Valid BoardVO board, BindingResult bindResult, RedirectAttributes attrs) {
 
+		if (bindResult.hasErrors()) {
+			return "redirect:/first/modify?bno="+board.getBno();
+		}
+		
 		if (service.modifyBoard(board)) {
 			attrs.addFlashAttribute("result", "success");
 		}
