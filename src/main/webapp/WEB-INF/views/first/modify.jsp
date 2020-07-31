@@ -85,11 +85,11 @@
 
 							if (operation === 'remove') {
 								formObj.attr("action", "/board/first/remove");
+								formObj.submit();
 
 							} else if (operation === 'list') {
+								self.location = "/board/first/list";
 							}
-
-							formObj.submit();
 						});
 
 			});
