@@ -9,6 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import kr.randi.domain.BoardVO;
+import kr.randi.domain.Criteria;
 import kr.randi.mapper.BoardMapper;
 import kr.randi.service.BoardService;
 import lombok.Setter;
@@ -43,7 +44,7 @@ public class BoardServiceTests {
 	
 	@Test
 	public void testBoardList() {
-		service.getBoardList().forEach(board -> log.info(board));
+		service.getBoardList(new Criteria()).forEach(board -> log.info(board));
 	}
 	
 	@Test

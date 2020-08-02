@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.randi.domain.BoardVO;
+import kr.randi.domain.Criteria;
+import kr.randi.domain.PageDTO;
 import kr.randi.service.BoardService;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -26,8 +28,10 @@ public class BoardController {
 	private BoardService service;
 
 	@GetMapping("/list")
-	public void list(Model model) {
-		model.addAttribute("list", service.getBoardList());
+	public void list(Criteria cri, Model model) {
+		log.info("list : " + cri);
+		model.addAttribute("list", service.getBoardList(cri));
+		model.addAttribute("pageMaker", new PageDTO(cri, 123));
 	}
 
 	@PostMapping("/write")

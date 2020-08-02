@@ -12,6 +12,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import kr.randi.domain.Criteria;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
@@ -33,7 +34,7 @@ public class BoardControllerTests {
 	private MockMvc mockMvc;
 	
 	//@Test 실행 전에 실행 되는 메소드
-	@Before
+	@Before 
 	public void setup() {
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(ctx).build();
 	}
@@ -49,7 +50,25 @@ public class BoardControllerTests {
 				);
 		
 	}
-	
+	*/
+	@Test
+	public void testBoardListPaging() throws Exception {
+		
+		Criteria cri = new Criteria();
+		
+		log.info(
+				mockMvc.perform(
+						MockMvcRequestBuilders.get("/board/list")
+						.param("pageNum", "1")
+						.param("amount", "10")
+						)
+				.andReturn()
+				.getModelAndView()
+				.getModelMap()
+				);
+		
+	}
+	/*
 	@Test
 	public void testWriteBoard() throws Exception {
 		
@@ -87,4 +106,5 @@ public class BoardControllerTests {
 		
 		log.info(resultPage);
 	}
+	*/
 }
