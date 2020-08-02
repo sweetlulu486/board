@@ -1,5 +1,7 @@
 package kr.randi.persistence;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import kr.randi.domain.BoardVO;
+import kr.randi.domain.Criteria;
 import kr.randi.mapper.BoardMapper;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -60,4 +63,12 @@ public class BoardMapperTests {
 		int count = mapper.updateBoard(board);
 		log.info("UPDATE COUNT: " + count);
 	}
+	
+	@Test
+	public void testPaging() {
+		Criteria cri = new Criteria();
+		List<BoardVO> list = mapper.getListWithPaging(cri);
+		list.forEach(board->log.info(board));
+	}
+	
 }

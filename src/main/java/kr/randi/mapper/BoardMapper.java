@@ -3,10 +3,12 @@ package kr.randi.mapper;
 import java.util.List;
 
 import kr.randi.domain.BoardVO;
+import kr.randi.domain.Criteria;
 
 public interface BoardMapper {
 
 	public List<BoardVO> getList();
+	public List<BoardVO> getListWithPaging(Criteria cri);
 	public void insertBoard(BoardVO board);
 	public BoardVO readBoard(Long bno);
 	public int deleteBoard(Long bno);
