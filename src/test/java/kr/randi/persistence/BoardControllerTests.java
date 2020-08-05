@@ -50,7 +50,7 @@ public class BoardControllerTests {
 				);
 		
 	}
-	*/
+
 	@Test
 	public void testBoardListPaging() throws Exception {
 		

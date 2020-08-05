@@ -47,8 +47,12 @@
 
 				<form id="operForm" action="/board/first/list" method="get">
 					<input type="hidden" id="bno" name ="bno" value="<c:out value='${board.bno }'/>">
+					<input type="hidden" name="pageNum" value="<c:out value='${cri.pageNum }'/>">
+					<input type="hidden" name="amount" value="<c:out value='${cri.amount }'/>">
 				</form>
-
+				
+				
+				<!-- end form -->
 			</div>
 			<!--  end panel-body -->
 
@@ -68,8 +72,8 @@ $(document).ready(function() {
 	});
 	
 	$("button[data-oper='list']").click("on", function(e){
-		self.location = "/board/first/list";
-		//operForm.attr("action", "/board/first/list").submit();
+		operForm.find("#bno").remove();
+		operForm.attr("action", "/board/first/list").submit();
 	});
 	
 });
