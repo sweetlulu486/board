@@ -5,10 +5,9 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Getter
-@Setter
 @ToString
 public class Criteria {
-
+	
 	private int idx;
 	private int skipCount;
 	private int pageNum;
@@ -21,8 +20,10 @@ public class Criteria {
 	public Criteria(int pageNum, int amount) {
 		this.pageNum = pageNum;
 		this.amount = amount;
-		this.idx = (pageNum-1) * 10;
-		this.skipCount = pageNum * 10; 
+		this.skipCount = 10;
+		this.idx = (pageNum-1) * skipCount;
+		
 	}
+	
 	
 }
