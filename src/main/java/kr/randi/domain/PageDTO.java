@@ -6,6 +6,9 @@ import lombok.ToString;
 @Getter
 @ToString
 public class PageDTO {
+	
+	public static final int PAGE_COUNT = 10;
+	
 	private int startPage;
 	private int endPage;
 	private boolean prev, next;
@@ -17,8 +20,8 @@ public class PageDTO {
 		this.cri = cri;
 		this.total = total;
 		
-		this.endPage = (int)(Math.ceil(cri.getPageNum() / 10.0)) * 10;
-		this.startPage = this.endPage - 9;
+		this.endPage = (int)(Math.ceil(cri.getPageNum() / 10.0)) * PAGE_COUNT;
+		this.startPage = this.endPage - (PAGE_COUNT-1);
 		
 		int realEnd = (int)(Math.ceil((total * 1.0) / cri.getAmount()));
 		if(realEnd < this.endPage) {
