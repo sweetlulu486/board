@@ -9,7 +9,7 @@ import lombok.ToString;
 public class Criteria {
 	
 	private int idx;
-	private int skipCount;
+	private int skipCount = 10;
 	private int pageNum;
 	private int amount;
 	
@@ -23,6 +23,19 @@ public class Criteria {
 		this.skipCount = 10; // 한 페이지당 보여줄 게시글 수
 		this.idx = (pageNum-1) * skipCount;
 		
+	}
+
+	public void setIdx(int pageNum) {
+		this.idx = (pageNum-1) * getSkipCount();
+	}
+
+	public void setPageNum(int pageNum) {
+		this.pageNum = pageNum;
+		setIdx(pageNum);
+	}
+
+	public void setAmount(int amount) {
+		this.amount = amount;
 	}
 	
 }

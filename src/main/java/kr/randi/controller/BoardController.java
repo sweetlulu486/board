@@ -1,5 +1,6 @@
 package kr.randi.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,10 +34,7 @@ public class BoardController {
 	private final static int PAGE_COUNT = 10;
 	
 	@GetMapping("/list")
-	public void list(Integer pageNum, Integer amount , Model model) {
-		pageNum = pageNum == null ? 1 : pageNum;
-		amount = amount == null ? PAGE_COUNT : amount;
-		Criteria cri = new Criteria(pageNum, amount);
+	public void list(Criteria cri , Model model) {
 		model.addAttribute("list", service.getBoardList(cri));
 		model.addAttribute("pageMaker", new PageDTO(cri, 123));
 	}
@@ -62,15 +61,23 @@ public class BoardController {
 	}
 
 	@PostMapping("/modify")
-	public String modify(@Valid BoardVO board, BindingResult bindResult, RedirectAttributes attrs) {
+	public String modify(@Valid BoardVO board, Criteria cri, BindingResult bindResult, RedirectAttributes attrs) {
 
 		if (bindResult.hasErrors()) {
+			List<ObjectError> errors = bindResult.getAllErrors();
+			for (ObjectError error : errors) {
+				errors.forEach(curError -> log.info(curError));
+			}
 			return "redirect:/first/modify?bno="+board.getBno();
 		}
 		
 		if (service.modifyBoard(board)) {
 			attrs.addFlashAttribute("result", "success");
 		}
+		
+		attrs.addAttribute("pageNum", cri.getPageNum());
+		attrs.addAttribute("amount", cri.getAmount());
+		
 		return "redirect:/first/list";
 	}
 	

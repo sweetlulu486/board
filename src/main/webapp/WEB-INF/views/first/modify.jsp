@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+	<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
@@ -21,7 +21,9 @@
 			<div class="panel-body">
 
 				<form role="form" action="/board/first/modify" method="post">
-
+					
+					<input type="hidden" name="pageNum" value="<c:out value='${cri.pageNum }'/> ">
+					<input type="hidden" name="amount" value="<c:out value='${cri.amount }'/> ">
 					<div class="form-group">
 						<label>Bno</label> 
 						<input class="form-control" name='bno' value='<c:out value="${board.bno }"/>' readonly="readonly">
@@ -34,9 +36,7 @@
 
 					<div class="form-group">
 						<label>Text area</label>
-						<textarea class="form-control" rows="3" name='content'>
-							<c:out value="${board.content}" />
-						</textarea>
+						<textarea class="form-control" rows="3" name='content'><c:out value="${board.content}" /></textarea>
 					</div>
 
 					<div class="form-group">
@@ -83,11 +83,11 @@
 
 							if (operation === 'remove') {
 								formObj.attr("action", "/board/first/remove");
-								formObj.submit();
-
 							} else if (operation === 'list') {
-								self.location = "/board/first/list";
+								formObj.empty();
+								formObj.attr("action", "/board/first/list");
 							}
+							formObj.submit();
 						});
 
 			});
