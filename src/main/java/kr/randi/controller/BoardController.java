@@ -82,10 +82,23 @@ public class BoardController {
 	}
 	
 	@PostMapping("/remove")
-	public String remove(@RequestParam("bno") Long bno, RedirectAttributes attrs) {
+	public String remove(@RequestParam("bno") Long bno, @Valid BoardVO board, Criteria cri, BindingResult bindResult, RedirectAttributes attrs) {
+		
+		if (bindResult.hasErrors()) {
+			List<ObjectError> errors = bindResult.getAllErrors();
+			for (ObjectError error : errors) {
+				errors.forEach(curError -> log.info(curError));
+			}
+			return "redirect:/first/modify?bno="+board.getBno();
+		}
+		
 		if(service.removeBoard(bno)) {
 			attrs.addFlashAttribute("result", "success");
 		}
+		
+		attrs.addAttribute("pageNum", cri.getPageNum());
+		attrs.addAttribute("amount", cri.getAmount());
+		
 		return"redirect:/first/list";
 	}
 }
