@@ -84,8 +84,16 @@
 							if (operation === 'remove') {
 								formObj.attr("action", "/board/first/remove");
 							} else if (operation === 'list') {
+								
+								formObj.attr("action", "/board/first/list").attr("method", "get");
+								var pageNumTag = $("input[name='pageNum']").clone();
+ 								var amountTag = $("input[name='amount']").clone();
+								
 								formObj.empty();
 								formObj.attr("action", "/board/first/list");
+								
+								formObj.append(pageNumTag);
+								formObj.append(amountTag);
 							}
 							formObj.submit();
 						});
