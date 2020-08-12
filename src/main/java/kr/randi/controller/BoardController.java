@@ -1,5 +1,7 @@
 package kr.randi.controller;
 
+import java.util.Optional;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +29,12 @@ public class BoardController {
 
 	@Setter(onMethod_ = @Autowired)
 	private BoardService service;
-
+	private final static int PAGE_COUNT = 10;
+	
 	@GetMapping("/list")
-	public void list(int pageNum, int amount , Model model) {
+	public void list(Integer pageNum, Integer amount , Model model) {
+		pageNum = pageNum == null ? 1 : pageNum;
+		amount = amount == null ? PAGE_COUNT : amount;
 		Criteria cri = new Criteria(pageNum, amount);
 		model.addAttribute("list", service.getBoardList(cri));
 		model.addAttribute("pageMaker", new PageDTO(cri, 123));
