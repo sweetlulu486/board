@@ -31,7 +31,6 @@ public class BoardController {
 
 	@Setter(onMethod_ = @Autowired)
 	private BoardService service;
-	private final static int PAGE_COUNT = 10;
 	
 	@GetMapping("/list")
 	public void list(Criteria cri , Model model) {
@@ -68,9 +67,7 @@ public class BoardController {
 
 		if (bindResult.hasErrors()) {
 			List<ObjectError> errors = bindResult.getAllErrors();
-			for (ObjectError error : errors) {
-				errors.forEach(curError -> log.info(curError));
-			}
+			errors.forEach(error -> log.info(error));
 			return "redirect:/first/modify?bno="+board.getBno();
 		}
 		
@@ -89,9 +86,7 @@ public class BoardController {
 		
 		if (bindResult.hasErrors()) {
 			List<ObjectError> errors = bindResult.getAllErrors();
-			for (ObjectError error : errors) {
-				errors.forEach(curError -> log.info(curError));
-			}
+			errors.forEach(error -> log.info(error));
 			return "redirect:/first/modify?bno="+board.getBno();
 		}
 		
