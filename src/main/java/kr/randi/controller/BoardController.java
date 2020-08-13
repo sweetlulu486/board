@@ -36,7 +36,10 @@ public class BoardController {
 	@GetMapping("/list")
 	public void list(Criteria cri , Model model) {
 		model.addAttribute("list", service.getBoardList(cri));
-		model.addAttribute("pageMaker", new PageDTO(cri, 123));
+		
+		int total = service.getTotalBoardCount(cri);
+		
+		model.addAttribute("pageMaker", new PageDTO(cri, total));
 	}
 
 	@PostMapping("/write")

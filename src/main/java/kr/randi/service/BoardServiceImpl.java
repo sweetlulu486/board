@@ -49,4 +49,10 @@ public class BoardServiceImpl implements BoardService {
 		return mapper.getListWithPaging(cri);
 	}
 
+	@Override
+	public int getTotalBoardCount(Criteria cri) {
+		// TODO Auto-generated method stub
+		return mapper.getTotalBoardCount(cri);
+	}
+
 }

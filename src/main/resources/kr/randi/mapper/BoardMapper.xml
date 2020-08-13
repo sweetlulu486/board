@@ -52,4 +52,12 @@
 			bno = #{bno}
 	</update>
 	
+	<select id="getTotalBoardCount" resultType="int">
+		<![CDATA[
+		SELECT COUNT(*)
+		FROM board.tbl_board
+		WHERE deleted <> 1 and bno > 0
+		]]>
+	</select>
+	
 </mapper>
