@@ -31,28 +31,27 @@
     	(bno > 0 and deleted <> 1)
     	]]> 
     	
-    	<if test="keyword != null and typeArr.length > 0">
-    		and
+    	<if test="type != null and !type.equals('')">
+    		AND
+    	
+	    	<trim prefix="(" suffix=")" prefixOverrides="AND|OR" >
+				<foreach item='type' collection="typeArr">
+					<trim prefix="OR">
+						<choose>
+							<when test="type == 'T'.toString()">
+							 title LIKE CONCAT('%',#{keyword},'%')
+							</when>
+							<when test="type == 'C'.toString()">
+							 content LIKE CONCAT('%',#{keyword},'%')
+							</when>
+							<when test="type == 'W'.toString()">
+							 writer LIKE CONCAT('%',#{keyword},'%')
+							</when>
+						</choose>
+					</trim>
+				</foreach>
+	    	</trim>
     	</if>
-    	
-    	<trim prefix="(" suffix=")" prefixOverrides="OR|AND" >
-			<foreach item='type' collection="typeArr">
-				<trim prefix="OR">
-					<choose>
-						<when test="type == 'T'.toString()">
-						 title LIKE CONCAT('%',#{keyword},'%')
-						</when>
-						<when test="type == 'C'.toString()">
-						 content LIKE CONCAT('%',#{keyword},'%')
-						</when>
-						<when test="type == 'W'.toString()">
-						 writer LIKE CONCAT('%',#{keyword},'%')
-						</when>
-					</choose>
-				</trim>
-			</foreach>
-    	</trim>
-    	
     	<![CDATA[
     	LIMIT #{idx}, #{skipCount}
     	]]>
