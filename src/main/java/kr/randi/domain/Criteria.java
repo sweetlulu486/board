@@ -1,5 +1,7 @@
 package kr.randi.domain;
 
+import org.springframework.web.util.UriComponentsBuilder;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -51,6 +53,16 @@ public class Criteria {
 
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
+	}
+	
+	public String getListLink() {
+		UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromPath("")
+				.queryParam("pageNum", this.pageNum)
+				.queryParam("amount", this.getAmount())
+				.queryParam("keyword", this.getKeyword())
+				.queryParam("type", this.getType());
+
+		return uriBuilder.toUriString();
 	}
 	
 }
