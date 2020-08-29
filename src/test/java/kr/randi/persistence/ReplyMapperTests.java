@@ -26,7 +26,6 @@ public class ReplyMapperTests {
 		log.info(mapper);
 	}
 	
-	
 	@Test
 	public void createReply() {
 		IntStream.rangeClosed(1, 10).forEach(i ->{
@@ -47,5 +46,12 @@ public class ReplyMapperTests {
 		Long targetRno = 5L;
 		ReplyVO replyVO = mapper.read(targetRno);
 		log.info(replyVO);
+	}
+	
+	@Test
+	public void testDelete() { 
+		Long targetRno = 4L;
+		int result = mapper.delete(targetRno);
+		log.info(result);
 	}
 }

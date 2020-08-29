@@ -11,4 +11,10 @@
 	<select id="read" resultType="kr.randi.domain.ReplyVO">
 		SELECT * FROM tbl_reply where rno = #{rno}
 	</select>
+	
+	<update id="delete">
+		UPDATE tbl_reply
+		SET deleted = 1
+		WHERE rno = #{rno}
+	</update>
 </mapper>
