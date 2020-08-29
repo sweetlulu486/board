@@ -7,4 +7,8 @@
 		INSERT INTO tbl_reply (bno, replyContent, replyer)
 		values (#{bno}, #{replyContent}, #{replyer})
 	</insert>
+	
+	<select id="read" resultType="kr.randi.domain.ReplyVO">
+		SELECT * FROM tbl_reply where rno = #{rno}
+	</select>
 </mapper>
