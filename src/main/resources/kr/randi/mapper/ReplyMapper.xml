@@ -17,4 +17,10 @@
 		SET deleted = 1
 		WHERE rno = #{rno}
 	</update>
+	
+	<update id="update">
+		UPDATE tbl_reply
+		SET replyContent = #{replyContent}
+		WHERE rno = #{rno}
+	</update>
 </mapper>

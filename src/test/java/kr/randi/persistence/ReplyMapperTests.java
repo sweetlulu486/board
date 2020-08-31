@@ -54,4 +54,14 @@ public class ReplyMapperTests {
 		int result = mapper.delete(targetRno);
 		log.info(result);
 	}
+	
+	@Test
+	public void testUpdate() {
+		Long targetRno = 2L;
+		ReplyVO replyVO = mapper.read(targetRno);
+		replyVO.setReplyContent("하이 ... ");
+		int count = mapper.update(replyVO);
+		log.info("update count: " + count);
+		
+	}
 }
