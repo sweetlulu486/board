@@ -23,4 +23,12 @@
 		SET replyContent = #{replyContent}
 		WHERE rno = #{rno}
 	</update>
+	
+	<select id="getReplyListWithPaging" resultType="kr.randi.domain.ReplyVO">
+		SELECT
+		*
+		FROM tbl_reply
+		WHERE bno = #{bno}
+		ORDER BY rno
+	</select>
 </mapper>

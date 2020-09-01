@@ -80,6 +80,5 @@ public class BoardMapperTests {
 		
 		List<BoardVO> list = mapper.getListWithPaging(cri);
 		list.forEach(board -> log.info(board));
-	}
-	
+	}	
 }

@@ -1,5 +1,6 @@
 package kr.randi.persistence;
 
+import java.util.List;
 import java.util.stream.IntStream;
 
 import org.junit.Test;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import kr.randi.domain.Criteria;
 import kr.randi.domain.ReplyVO;
 import kr.randi.mapper.ReplyMapper;
 import lombok.Setter;
@@ -62,6 +64,12 @@ public class ReplyMapperTests {
 		replyVO.setReplyContent("하이 ... ");
 		int count = mapper.update(replyVO);
 		log.info("update count: " + count);
-		
+	}
+	
+	@Test
+	public void testGetReplyList() {
+		Criteria cri = new Criteria();
+		List<ReplyVO> replies = mapper.getReplyListWithPaging(cri, 2L);
+		replies.forEach(i -> log.info(i));
 	}
 }
