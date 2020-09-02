@@ -22,19 +22,21 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="/board/resources/dist/js/sb-admin-2.js"></script>
-
+    
     <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-<script>
-  $(document).ready(function() {
-    $('#dataTables-example').DataTable({
-      responsive: true
-    });
-    $(".sidebar-nav")
-      .attr("class","sidebar-nav navbar-collapse collapse")
-      .attr("aria-expanded",'false')
-      .attr("style","height:1px");
-  });
-</script>
+
+	<script>
+	$(document).ready(function() {
+		$('#dataTables-example').DataTable({
+			responsive: true
+		});
+	
+	$(".sidebar-nav")
+		.attr("class","sidebar-nav navbar-collapse collapse")
+		.attr("aria-expanded",'false')
+		.attr("style","height:1px");
+ 	});
+	</script>
 
 </body>
 

@@ -80,5 +80,7 @@ $(document).ready(function() {
 });
 </script>
 
+<!-- Reply Service JavaScript -->
+<script src="/board/resources/js/reply.js"></script>
 
 <%@include file="../includes/footer.jsp"%>
