@@ -29,5 +29,17 @@ public class ReplyServiceImpl implements ReplyService {
 		// TODO Auto-generated method stub
 		return mapper.getReplyListWithPaging(cri, bno);
 	}
+
+	@Override
+	public ReplyVO read(Long rno) {
+		// TODO Auto-generated method stub
+		return mapper.read(rno);
+	}
+
+	@Override
+	public int remove(Long rno) {
+		// TODO Auto-generated method stub
+		return mapper.delete(rno);
+	}
 	
 }
