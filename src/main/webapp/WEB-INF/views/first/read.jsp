@@ -64,6 +64,9 @@
 </div>
 <!-- /.row -->
 
+<!-- Reply Service JavaScript -->
+<script src="/board/resources/js/reply.js"></script>
+
 <script type="text/javascript">
 $(document).ready(function() {
 
@@ -77,10 +80,23 @@ $(document).ready(function() {
 		operForm.attr("action", "/board/first/list").submit();
 	});
 	
+	var bnov = '${board.bno}';
+	replyService.add(
+		{replyContent:"aa", replyer: "bb", bno: bnov},
+		function(result) {
+			alert("hello");
+		}
+	)
+	
+	replyService.getReplyList(
+		{bno: bnov, page: 1},
+		function(list) {
+			for(let i = 0, len = list.length; i < len; i++) {
+				console.log(list[i]);	
+			}
+		}
+	)
 });
 </script>
-
-<!-- Reply Service JavaScript -->
-<script src="/board/resources/js/reply.js"></script>
 
 <%@include file="../includes/footer.jsp"%>
