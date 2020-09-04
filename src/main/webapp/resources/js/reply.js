@@ -27,8 +27,6 @@ var replyService = (
 				let bno = param.bno;
 				let page = param.page || 1;
 				
-				console.log("hello");
-				
 				$.getJSON(
 					"/board/replies/" + bno + "/" + page + ".json",
 					function(data) {
@@ -44,9 +42,27 @@ var replyService = (
 				});
 			}
 			
+			function remove(rno, callback, error) {
+				$.ajax({
+					type: 'delete',
+					url: '/board/replies/' + rno,
+					success: function(result, status, xhr) {
+						if(callback) {
+							callback(result);
+						}
+					},
+					error: function(xhr, status, err) {
+						if(error){
+							error(err);
+						}
+					}
+				})
+			}
+			
 			return {
 					add:add,
-					getReplyList:getReplyList
+					getReplyList:getReplyList,
+					remove:remove
 			};
 		}
 		

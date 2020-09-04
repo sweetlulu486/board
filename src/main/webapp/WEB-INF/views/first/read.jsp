@@ -79,7 +79,7 @@ $(document).ready(function() {
 		operForm.find("#bno").remove();
 		operForm.attr("action", "/board/first/list").submit();
 	});
-	
+
 	var bnov = '${board.bno}';
 	replyService.add(
 		{replyContent:"aa", replyer: "bb", bno: bnov},
@@ -95,6 +95,21 @@ $(document).ready(function() {
 				console.log(list[i]);	
 			}
 		}
+	)
+
+	replyService.remove(
+		3,
+		function(count){
+			if(count ==="success"){
+				alert("REMOVED");
+			} else {
+				alert("NOT REMOVED");
+			}
+		},
+		function(err){
+			alert("ERROR");
+		}
+	
 	)
 });
 </script>

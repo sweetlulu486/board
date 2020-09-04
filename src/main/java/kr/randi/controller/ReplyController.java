@@ -65,12 +65,12 @@ public class ReplyController {
 	}
 	
 	@DeleteMapping(value="/{rno}",
-			consumes = "application/json",
-			produces = {MediaType.TEXT_PLAIN_VALUE
+			produces = {
+					MediaType.TEXT_PLAIN_VALUE
 			})
 	public ResponseEntity<String> remove(@PathVariable("rno") Long rno) { 
 		return service.remove(rno) == 1 
-				? new ResponseEntity<>("seccess", HttpStatus.OK)
+				? new ResponseEntity<>("success", HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 }
