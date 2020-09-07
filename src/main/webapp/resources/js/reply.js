@@ -59,10 +59,32 @@ var replyService = (
 				})
 			}
 			
+			function update(reply, callback, error) {
+				console.log(reply.rno);
+				$.ajax({
+					type: 'put',
+					url: '/board/replies/' + reply.rno,
+					data: JSON.stringify(reply),
+					contentType: "application/json; charset=utf-8",
+					success: function(result, status, xhr) {
+						if(callback) {
+							callback(result)
+						}
+					},
+					error: function(xhr, status, err) {
+						console.log("update error");
+						if(error){
+							error(err);
+						}
+					}
+				})
+			}
+			
 			return {
 					add:add,
 					getReplyList:getReplyList,
-					remove:remove
+					remove:remove,
+					update:update
 			};
 		}
 		

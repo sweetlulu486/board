@@ -111,6 +111,13 @@ $(document).ready(function() {
 		}
 	
 	)
+	
+	replyService.update(
+	{rno: 1, bno: bnov, replyContent: " modify reply asdfasdf"},
+	function(result) {
+		alert("수정완료 ... ");
+	}
+	);
 });
 </script>
 
