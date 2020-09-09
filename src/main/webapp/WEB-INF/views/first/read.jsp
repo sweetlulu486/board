@@ -113,11 +113,16 @@ $(document).ready(function() {
 	)
 	
 	replyService.update(
-	{rno: 1, bno: bnov, replyContent: " modify reply asdfasdf"},
-	function(result) {
-		alert("수정완료 ... ");
-	}
+		{rno: 1, bno: bnov, replyContent: " modify reply asdfasdf"},
+		function(result) {
+			alert("수정완료 ... ");
+		}
 	);
+	
+	replyService.read(1, function(data){
+		console.log(data);
+	});
+	
 });
 </script>
 
