@@ -51,8 +51,6 @@
 					<input type="hidden" name="keyword" value="<c:out value='${cri.keyword }'/>">
 					<input type="hidden" name="type" value="<c:out value='${cri.type }'/>">
 				</form>
-				
-				
 				<!-- end form -->
 			</div>
 			<!--  end panel-body -->
@@ -63,6 +61,51 @@
 	<!-- end panel -->
 </div>
 <!-- /.row -->
+
+<div class='row'>
+
+  <div class="col-lg-12">
+
+    <!-- /.panel -->
+    <div class="panel panel-default">
+<!--       <div class="panel-heading">
+        <i class="fa fa-comments fa-fw"></i> Reply
+      </div> -->
+      
+      <div class="panel-heading">
+        <i class="fa fa-comments fa-fw"></i> Reply
+        <button id='addReplyBtn' class='btn btn-primary btn-xs pull-right'>New Reply</button>
+      </div>      
+      
+      
+      <!-- /.panel-heading -->
+      <div class="panel-body">        
+      
+        <ul class="chat">
+        
+			<!-- start reply -->
+			<!--  example -->
+			<!-- 
+			<li class="left clearfix" data-rno='12'>
+				<div>
+					<strong class="primary-font">user000</strong>
+					<small class="pull-right text-muted">1212-01-01 13:13</small>
+				</div>
+				<p>asdfasdf</p>
+			</li>
+			 -->
+        </ul>
+        <!-- ./ end ul -->
+      </div>
+      <!-- /.panel .chat-panel -->
+
+	<div class="panel-footer"></div>
+
+
+		</div>
+  </div>
+  <!-- ./ end row -->
+</div>
 
 <!-- Reply Service JavaScript -->
 <script src="/board/resources/js/reply.js"></script>
@@ -80,23 +123,50 @@ $(document).ready(function() {
 		operForm.attr("action", "/board/first/list").submit();
 	});
 
-	var bnov = '${board.bno}';
+	var bnoValue = '<c:out value="${board.bno}"/>'; //'${board.bno}';
+	var replyUL = $(".chat");
+	function showList(page) {
+		console.log("hello world");
+		replyService.getReplyList({bno: bnoValue, page : 1}, function(list){
+			
+			let str = "";
+			if(list == null || list.length == 0) {
+				replyUL.html("");
+				return;
+			}
+			console.log("hello world");
+			for(let i = 0, len = list.length || 0; i < len; i++) {
+				str += "<li class='left clearfix' data-rno='" + list[i].rno + "'>";
+				str += "	<div>";
+				str += "		<div class='header'>";
+				str += "			<strong class='primary-font'>" + list[i].replyer + "</strong>";
+				str += "			<small class='pull-right text-muted'>" + list[i].replyDate + "</small>";
+				str += "		</div>";
+				str += "	<p>" + list[i].replyContent + "</p>";
+				str += "	</div>";
+				str += "</li>";
+			}
+			
+			replyUL.html(str);
+		});	
+	}
+	
+	showList(1);
+	/*
 	replyService.add(
 		{replyContent:"aa", replyer: "bb", bno: bnov},
 		function(result) {
 			alert("hello");
 		}
 	)
-	
 	replyService.getReplyList(
-		{bno: bnov, page: 1},
+		{bno: bnoValue, page: 1},
 		function(list) {
 			for(let i = 0, len = list.length; i < len; i++) {
 				console.log(list[i]);	
 			}
 		}
 	)
-
 	replyService.remove(
 		3,
 		function(count){
@@ -122,7 +192,7 @@ $(document).ready(function() {
 	replyService.read(1, function(data){
 		console.log(data);
 	});
-	
+	*/
 });
 </script>
 

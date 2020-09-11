@@ -28,7 +28,7 @@ var replyService = (
 				let page = param.page || 1;
 				
 				$.getJSON(
-					"/board/replies/" + bno + "/" + page + ".json",
+					"/board/replies/pages/" + bno + "/" + page + ".json",
 					function(data) {
 						if(callback) {
 							callback(data);
