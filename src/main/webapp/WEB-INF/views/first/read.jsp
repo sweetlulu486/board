@@ -140,7 +140,7 @@ $(document).ready(function() {
 				str += "	<div>";
 				str += "		<div class='header'>";
 				str += "			<strong class='primary-font'>" + list[i].replyer + "</strong>";
-				str += "			<small class='pull-right text-muted'>" + list[i].replyDate + "</small>";
+				str += "			<small class='pull-right text-muted'>" + replyService.displayTime( list[i].replyDate ) + "</small>";
 				str += "		</div>";
 				str += "	<p>" + list[i].replyContent + "</p>";
 				str += "	</div>";
@@ -154,7 +154,7 @@ $(document).ready(function() {
 	showList(1);
 	/*
 	replyService.add(
-		{replyContent:"aa", replyer: "bb", bno: bnov},
+		{replyContent:"aa", replyer: "bb", bno: bnoValue},
 		function(result) {
 			alert("hello");
 		}
