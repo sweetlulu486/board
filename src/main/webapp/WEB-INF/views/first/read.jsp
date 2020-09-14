@@ -118,8 +118,8 @@
 			
 			<div class="modal-body">
 				<div class="form-group">
-					<label>Reply</label> 
-					<input class="form-control" name='reply' value='New Reply!!!!'>
+					<label>ReplyContent</label> 
+					<input class="form-control" name='replyContent' value='New Reply!!!!'>
 				</div>      
 				<div class="form-group">
 					<label>Replyer</label> 
@@ -207,6 +207,26 @@ $(document).ready(function() {
 		
 		$(".modal").modal("show");	
 	});
+	
+	modalRegisterBtn.on("click", function(e) {
+		
+		let reply = {
+				replyContent : modalInputReplyContent.val(),
+				replyer : modalInputReplyer.val(),
+				bno : bnoValue		
+		};
+		
+		replyService.add(reply, function(result){
+			alert(result);
+			
+			modal.find("input").val("");
+			modal.modal("hide");
+		});
+	})
+	
+	 $("#modalCloseBtn").on("click", function(e){
+    	modal.modal('hide');
+    });
 	
 	/*
 	replyService.add(

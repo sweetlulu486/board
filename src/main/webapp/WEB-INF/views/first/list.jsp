@@ -130,7 +130,7 @@
 			.ready(
 					function(){
 						
-						var result = '<c:out value="${result}"/>'
+						let	result = '<c:out value="${result}"/>'
 							
 						checkModal(result);
 						
