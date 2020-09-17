@@ -228,6 +228,22 @@ $(document).ready(function() {
     	modal.modal('hide');
     });
 	
+	$(".chat").on("click", "li", function(e){
+		var rno = $(this).data("rno");
+		replyService.read(rno, function(reply){
+			modalInputReplyContent.val(reply.replyContent);
+			modalInputReplyer
+			modalInputReplyDate.val(replyService.displayTime(reply.replyDate)).attr("readonly", "readonly");
+			modal.data("rno", reply.rno);
+			
+			modal.find("button[id != 'modalCloseBtn']").hide();
+			modalRegisterBtn.show();
+			modalRemoveBtn.show();
+			
+			$(".modal").modal("show");	
+		});
+	})
+	
 	/*
 	replyService.add(
 		{replyContent:"aa", replyer: "bb", bno: bnoValue},
