@@ -221,6 +221,8 @@ $(document).ready(function() {
 			
 			modal.find("input").val("");
 			modal.modal("hide");
+			
+			showList(1);
 		});
 	})
 	
