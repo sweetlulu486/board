@@ -3,6 +3,7 @@ package kr.randi.service;
 import java.util.List;
 
 import kr.randi.domain.Criteria;
+import kr.randi.domain.ReplyPageDTO;
 import kr.randi.domain.ReplyVO;
 
 public interface ReplyService {
@@ -11,4 +12,5 @@ public interface ReplyService {
 	public ReplyVO read(Long rno);
 	public int remove(Long rno);
 	public int modify(ReplyVO replyVO);
+	public ReplyPageDTO getListPage(Criteria cri, Long bno);
 }

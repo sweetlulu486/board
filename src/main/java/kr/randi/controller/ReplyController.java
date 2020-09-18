@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import kr.randi.domain.Criteria;
+import kr.randi.domain.ReplyPageDTO;
 import kr.randi.domain.ReplyVO;
 import kr.randi.service.ReplyService;
 import lombok.AllArgsConstructor;
@@ -51,10 +52,10 @@ public class ReplyController {
 				MediaType.APPLICATION_JSON_UTF8_VALUE,
 				MediaType.APPLICATION_XML_VALUE
 			})
-	public ResponseEntity<List<ReplyVO>> getReplyList(@PathVariable("page") int page, @PathVariable("bno") Long bno) { 
+	public ResponseEntity<ReplyPageDTO> getReplyList(@PathVariable("page") int page, @PathVariable("bno") Long bno) { 
 		Criteria cri = new Criteria(page, 10);
 		
-		return new ResponseEntity<>(service.getReplyList(cri, bno), HttpStatus.OK);
+		return new ResponseEntity<>(service.getListPage(cri, bno), HttpStatus.OK);
 	}
 	
 	@GetMapping(value="/{rno}",

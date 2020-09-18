@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kr.randi.domain.Criteria;
+import kr.randi.domain.ReplyPageDTO;
 import kr.randi.domain.ReplyVO;
 import kr.randi.mapper.ReplyMapper;
 import lombok.Setter;
@@ -46,6 +47,12 @@ public class ReplyServiceImpl implements ReplyService {
 	public int modify(ReplyVO replyVO) {
 		// TODO Auto-generated method stub
 		return mapper.update(replyVO);
+	}
+
+	@Override
+	public ReplyPageDTO getListPage(Criteria cri, Long bno) {
+		// TODO Auto-generated method stub
+		return new ReplyPageDTO(mapper.getCountByBno(bno), mapper.getReplyListWithPaging(cri, bno));
 	}
 	
 }
