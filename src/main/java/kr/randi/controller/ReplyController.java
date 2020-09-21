@@ -55,7 +55,7 @@ public class ReplyController {
 	public ResponseEntity<ReplyPageDTO> getReplyList(@PathVariable("page") int page, @PathVariable("bno") Long bno) { 
 		Criteria cri = new Criteria(page, 10);
 		
-		return new ResponseEntity<>(service.getListPage(cri, bno), HttpStatus.OK);
+		return new ResponseEntity<>(service.getListPage(cri, bno, page), HttpStatus.OK);
 	}
 	
 	@GetMapping(value="/{rno}",

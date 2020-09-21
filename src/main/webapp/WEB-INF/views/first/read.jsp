@@ -68,9 +68,6 @@
 
     <!-- /.panel -->
     <div class="panel panel-default">
-<!--       <div class="panel-heading">
-        <i class="fa fa-comments fa-fw"></i> Reply
-      </div> -->
       
       <div class="panel-heading">
         <i class="fa fa-comments fa-fw"></i> Reply
@@ -99,7 +96,9 @@
       </div>
       <!-- /.panel .chat-panel -->
 
-	<div class="panel-footer"></div>
+	<div class="panel-footer">
+		
+	</div>
 
 
 		</div>
@@ -163,15 +162,19 @@ $(document).ready(function() {
 	var bnoValue = '<c:out value="${board.bno}"/>'; //'${board.bno}';
 	var replyUL = $(".chat");
 	function showList(page) {
-		console.log("hello world");
-		replyService.getReplyList({bno: bnoValue, page : 1}, function(list){
+		replyService.getReplyList({bno: bnoValue, page : page || 1}, function(replyCnt, list){
+
+			if(page == -1) {
+				pageNum = Math.ceil( replyCnt / 10.0 );
+				showList(pageNum);
+				return;
+			}
 			
 			let str = "";
 			if(list == null || list.length == 0) {
-				replyUL.html("");
 				return;
 			}
-			console.log("hello world");
+			
 			for(let i = 0, len = list.length || 0; i < len; i++) {
 				str += "<li class='left clearfix' data-rno='" + list[i].rno + "'>";
 				str += "	<div>";
@@ -185,7 +188,50 @@ $(document).ready(function() {
 			}
 			
 			replyUL.html(str);
+			showReplyPage(replyCnt);
 		});	
+	}
+	
+	var pageNum = 1;
+	let replyPageFooter = $(".panel-footer");
+	function showReplyPage(replyCnt) {
+		
+		let endNum = Math.ceil( pageNum / 10.0 ) * 10;
+		let startNum = endNum - 9;
+
+		let prev = startNum != 1;
+		let next = false;
+		
+		if(endNum * 10 >= replyCnt) {
+			endNum = Math.ceil(replyCnt / 10.0);
+		}
+		
+		if(endNum * 10 < replyCnt) {
+			next = true;
+		}
+		
+		let str = "<ul class='pagination pull-right'>";
+		if(prev === true) {
+			str += "<li class='page-item'>"
+			str += "	<a class='page-link' href='" + (startNum - 1) + "'>Previous</a>"
+			str += "</li>";
+		}
+		
+		for(let i = startNum; i <= endNum; i++) {
+			let activeAttr = pageNum == i? "active" : "";
+			str += "<li class='page-item " + activeAttr +" '>"
+			str += "	<a class='page-link' href='" + i + "'>" + i + "</a>"
+			str += "</li>"; 
+		}
+		
+		if(next) {
+			str += "<li class='page-item'>"
+			str += "	<a class='page-link' href='" + (endNum + 1) + "'>Next</a>"
+			str += "</li>";
+		}
+		str += "</ul></div>";
+		
+		replyPageFooter.html(str);
 	}
 	
 	showList(1);
@@ -222,7 +268,7 @@ $(document).ready(function() {
 			modal.find("input").val("");
 			modal.modal("hide");
 			
-			showList(1);
+			showList(-1); // 댓글 입력시 댓글 페이지 갱신
 		});
 	})
 	
@@ -244,6 +290,15 @@ $(document).ready(function() {
 			
 			$(".modal").modal("show");	
 		});
+	})
+	
+	replyPageFooter.on("click", "li a", function(e){
+		e.preventDefault();
+		
+		let targetPageNum = $(this).attr("href");
+		pageNum = targetPageNum;
+		showList(pageNum);
+		 
 	})
 	
 	/*

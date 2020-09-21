@@ -8,9 +8,9 @@ import kr.randi.domain.ReplyVO;
 
 public interface ReplyService {
 	public int writeReply(ReplyVO replyVO);	
-	public List<ReplyVO> getReplyList(Criteria cri, Long bno);
+	//public List<ReplyVO> getReplyList(Criteria cri, Long bno);
 	public ReplyVO read(Long rno);
 	public int remove(Long rno);
 	public int modify(ReplyVO replyVO);
-	public ReplyPageDTO getListPage(Criteria cri, Long bno);
+	public ReplyPageDTO getListPage(Criteria cri, Long bno, int curReplyPage);
 }

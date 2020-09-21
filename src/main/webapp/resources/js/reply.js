@@ -31,7 +31,7 @@ var replyService = (
 					"/board/replies/pages/" + bno + "/" + page + ".json",
 					function(data) {
 						if(callback) {
-							callback(data);
+							callback(data.replyCnt, data.list);
 						}
 					}
 				)

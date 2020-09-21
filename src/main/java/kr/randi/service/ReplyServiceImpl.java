@@ -25,11 +25,13 @@ public class ReplyServiceImpl implements ReplyService {
 		return mapper.insert(replyVO);
 	}
 
+	/*
 	@Override
 	public List<ReplyVO> getReplyList(Criteria cri, Long bno) {
 		// TODO Auto-generated method stub
 		return mapper.getReplyListWithPaging(cri, bno);
 	}
+	*/
 
 	@Override
 	public ReplyVO read(Long rno) {
@@ -50,9 +52,11 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 
 	@Override
-	public ReplyPageDTO getListPage(Criteria cri, Long bno) {
+	public ReplyPageDTO getListPage(Criteria cri, Long bno, int curReplyPage) {
 		// TODO Auto-generated method stub
-		return new ReplyPageDTO(mapper.getCountByBno(bno), mapper.getReplyListWithPaging(cri, bno));
+		
+		List<ReplyVO> list = mapper.getReplyListWithPaging(cri, bno, (curReplyPage-1) * 10);
+		return new ReplyPageDTO(mapper.getCountByBno(bno), list);
 	}
-	
+
 }
