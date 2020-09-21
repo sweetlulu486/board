@@ -55,6 +55,9 @@ public class ReplyServiceImpl implements ReplyService {
 	public ReplyPageDTO getListPage(Criteria cri, Long bno, int curReplyPage) {
 		// TODO Auto-generated method stub
 		
+		if(curReplyPage <= -1) {
+			curReplyPage = 1;
+		}
 		List<ReplyVO> list = mapper.getReplyListWithPaging(cri, bno, (curReplyPage-1) * 10);
 		return new ReplyPageDTO(mapper.getCountByBno(bno), list);
 	}
