@@ -271,7 +271,29 @@ $(document).ready(function() {
 			showList(-1); // 댓글 입력시 댓글 페이지 갱신
 		});
 	})
+
+	modalModBtn.on("click", function(e){
+		// 태그의 data-rno 속성에서 data() 로 rno를 하면 data-rno의 값이 가져와 짐
+		let reply = {rno : modal.data("rno"), replyContent: modalInputReplyContent.val()};
+		
+		replyService.update(reply, function(result){
+			alert(result);
+			modal.modal("hide");
+			showList(pageNum);
+		});
+
+	});
 	
+	modalRemoveBtn.on("click", function(e){
+		
+		replyService.remove(modal.data("rno"), function(result){
+			alert(result);
+			modal.modal("hide");
+			showList(pageNum);
+		})
+				
+	})
+		
 	 $("#modalCloseBtn").on("click", function(e){
     	modal.modal('hide');
     });
@@ -280,13 +302,12 @@ $(document).ready(function() {
 		var rno = $(this).data("rno");
 		replyService.read(rno, function(reply){
 			modalInputReplyContent.val(reply.replyContent);
-			modalInputReplyer
 			modalInputReplyer.val(reply.replyer);
 			modalInputReplyDate.val(replyService.displayTime(reply.replyDate)).attr("readonly", "readonly");
 			modal.data("rno", reply.rno);
 			
 			modal.find("button[id != 'modalCloseBtn']").hide();
-			modalRegisterBtn.show();
+			modalModBtn.show();
 			modalRemoveBtn.show();
 			
 			$(".modal").modal("show");	
