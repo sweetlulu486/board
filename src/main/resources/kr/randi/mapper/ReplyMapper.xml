@@ -29,6 +29,9 @@
 		*
 		FROM tbl_reply
 		WHERE bno = #{bno}
+		<![CDATA[
+		AND deleted <> 1
+		]]>
 		ORDER BY rno
 		LIMIT #{curReplyPage}, 10
 	</select>
