@@ -281,6 +281,7 @@ $(document).ready(function() {
 		replyService.read(rno, function(reply){
 			modalInputReplyContent.val(reply.replyContent);
 			modalInputReplyer
+			modalInputReplyer.val(reply.replyer);
 			modalInputReplyDate.val(replyService.displayTime(reply.replyDate)).attr("readonly", "readonly");
 			modal.data("rno", reply.rno);
 			
