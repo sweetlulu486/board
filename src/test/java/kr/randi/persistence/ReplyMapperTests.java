@@ -69,7 +69,7 @@ public class ReplyMapperTests {
 	@Test
 	public void testGetReplyList() {
 		Criteria cri = new Criteria();
-		List<ReplyVO> replies = mapper.getReplyListWithPaging(cri, 2L);
+		List<ReplyVO> replies = mapper.getReplyListWithPaging(cri, 2L, 0);
 		replies.forEach(i -> log.info(i));
 	}
 }
