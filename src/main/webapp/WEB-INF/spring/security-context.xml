@@ -9,7 +9,8 @@
 	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
 
 	<security:http>
-		<security:form-login/>
+		<security:form-login login-page="/first/customLogin"/>
+		<security:intercept-url pattern="/first/write" access="hasRole('ROLE_MEMBER')"/>		
 	</security:http>
 
 	<security:authentication-manager>

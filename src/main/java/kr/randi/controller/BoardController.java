@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -42,6 +43,7 @@ public class BoardController {
 	}
 
 	@PostMapping("/write")
+	@PreAuthorize("isAuthenticated()")
 	public String write(@Valid BoardVO board, BindingResult bindResult, RedirectAttributes attrs) {
 		
 		if (bindResult.hasErrors()) {
@@ -52,7 +54,9 @@ public class BoardController {
 		attrs.addFlashAttribute("result", board.getBno());
 		return "redirect:/first/list";
 	}
+	
 	@GetMapping("/write")
+	@PreAuthorize("isAuthenticated()")
 	public void write() {
 		
 	}
